@@ -33,7 +33,7 @@ for i in range(source_image.GetNumberOfPoints()):
         source_probe = InterpolatePoints(line.GetOutput(), source_image)
         truth_probe = InterpolatePoints(line.GetOutput(), truth_image)
         
-        intensity, truth_vals, z, ids = [], [], [], []
+        intensity, truth_vals, z = [], [], []
         
         for j in range(num_resolution_points):
             intensity.append(source_probe.GetOutput().GetPointData().GetScalars().GetValue(j))
@@ -110,18 +110,16 @@ for i in range(source_image.GetNumberOfPoints()):
         line.Update()
         
         source_probe = InterpolatePoints(line.GetOutput(), source_image)
-        truth_probe = InterpolatePoints(line.GetOutput(), truth_image)
         
-        intensity, truth_vals, z, ids = [], [], [], []
+        intensity, z, ids = [], [], []
         
         for j in range(num_resolution_points):
             intensity.append(source_probe.GetOutput().GetPointData().GetScalars().GetValue(j))
-            truth_vals.append(truth_probe.GetOutput().GetPointData().GetScalars().GetValue(j))
             z.append(source_probe.GetOutput().GetPoint(j)[2])
             ids.append(octree.FindClosestPoint(source_probe.GetOutput().GetPoint(j)))
         
-        array = np.array(list(zip(intensity, truth_vals, z, ids)))
-        array = array[array[:,2].argsort()]
+        array = np.array(list(zip(intensity, z, ids)))
+        array = array[array[:,1].argsort()]
         
         x = []
         for k in range(array.shape[0] - 1):
