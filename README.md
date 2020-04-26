@@ -10,6 +10,9 @@ Transcribe the data down to 1 Dimension
 ![Transcribe to Neural Net Input Data](https://github.com/kevindean/LineProfileDeconvolution/blob/master/LineProfileData.png)
 
 Train the Network (see how to adjust the network structure / dataset to get the best results; the network is set up for semantic segmentation, represented as a unet-style architecture)
+
+
+Network Prediction of Line Profile in 1 Dimension
 ![Network Prediction of Line Profile in 1 Dimension](https://github.com/kevindean/LineProfileDeconvolution/blob/master/LineProfilePrediction.png)
 
 Using a Point Locator, keep track of the indices and map the predictions back to a 3 Dimensional Volume
