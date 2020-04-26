@@ -9,8 +9,8 @@ Data Acquisition from Line Profiles from the vertical direction through a volume
 Transcribe the data down to 1 Dimension
 ![Transcribe to Neural Net Input Data](https://github.com/kevindean/LineProfileDeconvolution/blob/master/LineProfileData.png)
 
-Train the Network (see how to adjust the network structure / dataset to get the best results; the network is set up for semantic segmentation, represented as a unet-style architecture)
-
+Train the Network (see how to adjust the network structure / dataset to get the best results; the network is set up for semantic segmentation, represented as a unet-style architecture; utilized Keras for quick plug and play)
+![Model Architecture](https://github.com/kevindean/LineProfileDeconvolution/blob/master/Screenshot%20from%202020-04-25%2020-02-52.png)
 
 Network Prediction of Line Profile in 1 Dimension
 ![Network Prediction of Line Profile in 1 Dimension](https://github.com/kevindean/LineProfileDeconvolution/blob/master/LineProfilePrediction.png)
