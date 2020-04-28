@@ -82,7 +82,9 @@ def TagImageFromPolyDataSurface(surface, image, tag_value=1):
     # convert bounds of polydata to image extents
     extents = ConvertBoundsToExtents(image, surface.GetBounds())
     
-    # extract a smaller in order to iterate over less points
+    # extract a smaller volume in order to iterate over less points
+    # this way if you have a large image, it takes significantly
+    # less time
     voi = vtk.vtkExtractVOI()
     voi.SetInputData(image)
     voi.SetVOI(extents)
