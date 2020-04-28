@@ -3,13 +3,6 @@ import vtk
 from vtk.util import numpy_support as ns
 import numpy as np
 
-import tensorflow as tf
-from tensorflow.keras.models import Model
-from tensorflow.keras.losses import Huber
-from tensorflow.keras.optimizers import Adam
-from tensorflow.keras.callbacks import ModelCheckpoint
-from tensorflow.keras.layers import Input, LSTM, Conv1D, MaxPooling1D, UpSampling1D, concatenate, Dropout
-
 # input -> filename is a string
 # input -> data is a vtk type (either ".vti" or ".vtp")
 def WriteData(filename, data):
@@ -53,6 +46,7 @@ def ConvertBoundsToExtents(image, bounds):
     bounds = np.array(bounds).astype(int).tolist()
     extents = [float()] * 6
     
+    # compute the structured coordinates to find xmin, ymin, zmin
     pcoords = [float()] * 3
     x   = [bounds[0]-1, bounds[2]-1, bounds[4]-1]
     ijk = [bounds[1]+1, bounds[3]+1, bounds[5]+1]
@@ -62,6 +56,7 @@ def ConvertBoundsToExtents(image, bounds):
     extents[2] = ijk[1] + 1
     extents[4] = ijk[2] + 1
     
+    # compute the structured coordinates to find xmax, ymax, zmax
     pcoords = [float()] * 3
     x   = [bounds[0]-1, bounds[2]-1, bounds[4]-1]
     ijk = [bounds[1]+1, bounds[3]+1, bounds[5]+1]
@@ -71,6 +66,7 @@ def ConvertBoundsToExtents(image, bounds):
     extents[3] = x[1]
     extents[5] = x[2]
     
+    # print out the conversion
     print("Conversion: {0}".format(extents))
     return extents
 
